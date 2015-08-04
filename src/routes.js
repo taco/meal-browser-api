@@ -2,17 +2,33 @@ var Router = require('koa-router');
 
 var meals = require('./meals');
 
+meals.loadDefaultMeals();
+
 module.exports = function(app) {
 
-	meals.loadDefaultTasks();
+	
 
 	var router = new Router();
 
 	router
 		.get('/meals', function*(next) {
+			
+			var offset = this.request.query.offset || 0;
+			var limit = this.request.query.limit || 20;
+			var sortby = this.request.query.sortby || 'rating';
+			var sortdir = this.request.query.sortdir || 'desc';
+			var filter = []
+			try {
+				console.log(this.request.query.filter)
+				filter = JSON.parse(this.request.query.filter)
+				console.log('\n\tFILTER!')
+			} catch(e) {}
+			console.log('\t', filter)
+
+
 			this.body = {
 				sucess: true,
-				items: meals.list()
+				items: meals.list(offset, limit, sortby, sortdir, filter)
 			};
 		})
 		.post('/meals', function*(next) {
@@ -23,7 +39,7 @@ module.exports = function(app) {
 
 			this.body = {
 				success: true,
-				items: meals.list()
+				items: meals.list(this.request.query.offset, this.request.query.limit)
 			};
 		})
 		.put('/meals/:id', function*(next) {

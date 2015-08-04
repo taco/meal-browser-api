@@ -8,17 +8,32 @@ function findIndex(meal) {
 }
 
 module.exports = {
-	loadDefaultTasks: function() {
-		this.add({
-			name: 'Meal 1'
-		});
-		this.add({
-			name: 'Meal 2'
-		});
+	loadDefaultMeals: function() {
+		meals = JSON.parse(require('fs').readFileSync(__dirname + '/data/meals.json', 'utf8'))
 	},
 
-	list: function() {
-		return meals.slice(0).reverse();
+	list: function(offset, limit, sortby, sortdir, filter) {
+		var dir = sortdir === 'asc' ? 1 : -1;
+		
+		var ret = meals.sort(function(a, b) {
+			if (a[sortby] < b[sortby]) {
+				return -1 * dir;
+			}
+			if (a[sortby] > b[sortby]) {
+				return 1 * dir;
+			}
+			return 0;
+		})
+
+		if (Array.isArray(filter) && filter.length) {
+			ret = meals.filter(function(m) {
+				return filter.every(function(f) {
+					return m[f.f] < f.u && m[f.f] > f.b;
+				});
+			});
+		}
+
+		return ret.slice(offset || 0, offset + limit || meals.length);
 	},
 
 	add: function(meal) {
