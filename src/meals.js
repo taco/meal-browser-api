@@ -22,7 +22,7 @@ module.exports = {
 			if (a[sortby] > b[sortby]) {
 				return 1 * dir;
 			}
-			return 0;
+			return a.id.localeCompare(b.id) * dir
 		})
 
 		if (Array.isArray(filter) && filter.length) {

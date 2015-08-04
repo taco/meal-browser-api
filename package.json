@@ -21,9 +21,13 @@
   },
   "homepage": "https://github.subcom/taco/meal-browser-api",
   "dependencies": {
+    "json-array-stream": "^0.1.2",
+    "jsonp-body": "^1.0.0",
     "koa": "^0.21.0",
     "koa-body-parser": "^1.1.2",
+    "koa-jsonp": "^0.1.2",
     "koa-router": "^5.1.2",
+    "koa-safe-jsonp": "^0.3.0",
     "node-uuid": "^1.4.3"
   },
   "devDependencies": {

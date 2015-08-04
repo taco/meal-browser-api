@@ -1,10 +1,9 @@
 var app = require('koa')();
-
 var bodyParser = require('koa-body-parser');
 var routes = require('./routes');
 var port = 3001;
 
-app.use(bodyParser());
+app.use(bodyParser())
 
 routes(app);
 
