@@ -1,10 +1,10 @@
 {
   "name": "meal-browser-api",
-  "version": "0.1.1",
-  "description": "An API to ser the Meal Browser App",
+  "version": "0.1.2",
+  "description": "An API to serve the Meal Browser App",
   "main": "src/app.js",
   "scripts": {
-    "start": "npm install && DEBUG=koa* node --harmony ./src/app.js"
+    "start": "DEBUG=koa* nodemon --harmony src/app"
   },
   "repository": {
     "type": "git",
@@ -27,7 +27,6 @@
     "node-uuid": "^1.4.3"
   },
   "devDependencies": {
-    "babel": "^5.5.6",
-    "concurrently": "^0.1.1"
+    "nodemon": "^1.4.0"
   }
 }

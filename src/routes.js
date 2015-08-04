@@ -17,13 +17,11 @@ module.exports = function(app) {
 			var limit = this.request.query.limit || 20;
 			var sortby = this.request.query.sortby || 'rating';
 			var sortdir = this.request.query.sortdir || 'desc';
+			
 			var filter = []
 			try {
-				console.log(this.request.query.filter)
 				filter = JSON.parse(this.request.query.filter)
-				console.log('\n\tFILTER!')
 			} catch(e) {}
-			console.log('\t', filter)
 
 
 			this.body = {

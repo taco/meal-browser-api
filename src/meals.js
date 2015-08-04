@@ -9,7 +9,7 @@ function findIndex(meal) {
 
 module.exports = {
 	loadDefaultMeals: function() {
-		meals = JSON.parse(require('fs').readFileSync(__dirname + '/data/meals.json', 'utf8'))
+		meals = JSON.parse(require('fs').readFileSync(__dirname + '/../data/meals.json', 'utf8'))
 	},
 
 	list: function(offset, limit, sortby, sortdir, filter) {
