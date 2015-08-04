@@ -39,7 +39,12 @@ module.exports = {
 	add: function(meal) {
 		meal.id = uuid.v1();
 
+		meal.price = parseInt(meal.price, 10);
+		meal.rating = parseInt(meal.rating, 10);
+		meal.min = parseInt(meal.min, 10);
+
 		meals.push(meal);
+		return meal;
 	},
 
 	update: function(id, meal) {

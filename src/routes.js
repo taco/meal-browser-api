@@ -31,7 +31,7 @@ module.exports = function(app) {
 			} else {
 				this.set('Content-Type', 'application/json');
 			}
-			
+
 			this.body = jsonp({
 				sucess: true,
 				items: meals.list(offset, limit, sortby, sortdir, filter)
@@ -41,11 +41,11 @@ module.exports = function(app) {
 			if (this.request.accepts('json') !== 'json')
 				this.throw(406, 'json only');
 
-			meals.add(this.request.body)
+			
 
 			this.body = {
 				success: true,
-				items: meals.list(this.request.query.offset, this.request.query.limit)
+				meal: meals.add(this.request.body)
 			};
 		})
 		.put('/meals/:id', function*(next) {
